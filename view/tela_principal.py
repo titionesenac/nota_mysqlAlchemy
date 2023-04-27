@@ -5,10 +5,15 @@ from model.nota import Nota
 from controller.nota_dao import DataBase
 from datetime import datetime
 
+from infra.configs.connection import DBConnectionHandler
+
+
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
 
+        conn = DBConnectionHandler()
+        conn.create_database()
         self.setWindowTitle('Bloco de Notas')
         self.setMinimumSize(520, 500)
 

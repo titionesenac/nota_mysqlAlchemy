@@ -18,3 +18,4 @@ icone = QIcon("images/home.svg")
 window.setWindowIcon(icone)
 window.show()
 app.exec()
+ 

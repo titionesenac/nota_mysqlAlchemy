@@ -4,7 +4,7 @@ from infra.entities.nota import Nota
 class NotaRepository:
 
     #Método para realizar a consulta de todas as notas
-    def select(self):
+    def select_all(self):
         with DBConnectionHandler() as db:
             data = db.session.query(Nota).all()
             return data

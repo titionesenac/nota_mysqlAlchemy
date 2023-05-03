@@ -6,9 +6,9 @@ class Nota(Base):
     __tablename__ = 'nota'
     #Colunas da tabela que serão criadas na tabela
     id = Column(Integer, autoincrement=True, primary_key=True)
-    titulo = Column(String, nullable=False)
-    texto = Column(String, nullable=False)
-    prioridade = Column(String, nullable=False)
+    titulo = Column(String(length=100), nullable=False)
+    texto = Column(String(length=100), nullable=False)
+    prioridade = Column(String(length=100), nullable=False)
     data_criacao = Column(DateTime)
 
     #Função que sobrescreve a maneira de 'printar' o objeto

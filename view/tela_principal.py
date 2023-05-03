@@ -1,10 +1,10 @@
 from PySide6.QtWidgets import QMainWindow, QLabel, QLineEdit, QPushButton, QVBoxLayout, QWidget, QMessageBox, \
     QSizePolicy, QTableWidget, QAbstractItemView, QTableWidgetItem, QTextEdit, QComboBox
 from PySide6.QtGui import QBrush, QColor, QFont
-from model.nota import Nota
-from controller.nota_dao import DataBase
 from datetime import datetime
 
+from infra.repository.nota_repository import NotaRepository
+from model.nota import Nota
 from infra.configs.connection import DBConnectionHandler
 
 
@@ -13,7 +13,6 @@ class MainWindow(QMainWindow):
         super().__init__()
 
         conn = DBConnectionHandler()
-        conn.create_database()
         self.setWindowTitle('Bloco de Notas')
         self.setMinimumSize(520, 500)
 
@@ -146,8 +145,8 @@ class MainWindow(QMainWindow):
 
     def popula_tabela_notas(self):
         self.tabela_notas.setRowCount(0)
-        db = DataBase()
-        lista_notas = db.consultar_todas_notas()
+        conn = NotaRepository()
+        lista_notas = conn.select_all()
         self.tabela_notas.setRowCount(len(lista_notas))
 
         for linha, nota in enumerate(lista_notas):
